@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # Base de données MySQL pour student-service
+  student-db:
+    image: mysql:8.0
+    container_name: student-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: student_db
+      MYSQL_USER: student_user
+      MYSQL_PASSWORD: student_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - student-data:/var/lib/mysql
+    networks:
+      - soa-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Base de données MySQL pour grade-service
+  grade-db:
+    image: mysql:8.0
+    container_name: grade-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: grade_db
+      MYSQL_USER: grade_user
+      MYSQL_PASSWORD: grade_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - grade-data:/var/lib/mysql
+    networks:
+      - soa-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Base de données MySQL pour certificate-service
+  certificate-db:
+    image: mysql:8.0
+    container_name: certificate-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: certificate_db
+      MYSQL_USER: cert_user
+      MYSQL_PASSWORD: cert_pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - certificate-data:/var/lib/mysql
+    networks:
+      - soa-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # phpMyAdmin pour gérer toutes les bases (OPTIONNEL mais utile)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOSTS: student-db,grade-db,certificate-db
+    ports:
+      - "8090:80"
+    networks:
+      - soa-network
+    depends_on:
+      - student-db
+      - grade-db
+      - certificate-db
+
+volumes:
+  student-data:
+  grade-data:
+  certificate-data:
+
+networks:
+  soa-network:
+    driver: bridge
