@@ -15,21 +15,8 @@ Isolation complète des bases de données
 
 🏗️ Architecture
 Diagramme de l'Architecture
-┌─────────────────┐
-│   Client Web    │
-└────────┬────────┘
-         │
-    ┌────┴─────────────────┬──────────────────┐
-    │                      │                  │
+<img width="797" height="603" alt="image" src="https://github.com/user-attachments/assets/089e1fd8-3985-4743-864e-27677bba5543" />
 
-│   Student    │◄──┤    Grade     │◄──┤  Certificate   │
-│   Service    │   │   Service    │   │    Service     │
-│  Port: 8081  │   │  Port: 8082  │   │  Port: 8083    │
-
-       │                  │                     │
-            
-   │MySQL DB│        │MySQL DB│           │MySQL DB│
-   │students│        │ grades │           │  certs │
 
 
 Services Implémentés
