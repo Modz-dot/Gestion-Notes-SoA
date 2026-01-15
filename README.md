@@ -21,16 +21,17 @@ Diagramme de l'Architecture
          │
     ┌────┴─────────────────┬──────────────────┐
     │                      │                  │
-┌───▼──────────┐   ┌──────▼───────┐   ┌─────▼──────────┐
+
 │   Student    │◄──┤    Grade     │◄──┤  Certificate   │
 │   Service    │   │   Service    │   │    Service     │
 │  Port: 8081  │   │  Port: 8082  │   │  Port: 8083    │
-└──────┬───────┘   └──────┬───────┘   └────────┬───────┘
+
        │                  │                     │
-   ┌───▼────┐        ┌───▼────┐           ┌───▼────┐
+            
    │MySQL DB│        │MySQL DB│           │MySQL DB│
    │students│        │ grades │           │  certs │
-   └────────┘        └────────┘           └────────┘
+
+
 Services Implémentés
 ServicePortResponsabilitéBase de Donnéesstudent-service8081Gestion des dossiers étudiantsstudent_db (MySQL)grade-service8082Saisie et calcul des notes/moyennesgrade_db (MySQL)certificate-service8083Génération de relevés de notes PDFcertificate_db (MySQL)
 
