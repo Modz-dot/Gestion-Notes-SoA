@@ -44,6 +44,37 @@ Certificate Service
 ✅ Historique des relevés par étudiant
 
 
+
+
+📡 Documentation API
+Endpoints Principaux
+Student Service (8081)
+
+POST /api/students - Créer un étudiant
+GET /api/students - Liste des étudiants
+GET /api/students/{id} - Détails d'un étudiant
+PUT /api/students/{id} - Modifier un étudiant
+DELETE /api/students/{id} - Supprimer un étudiant
+
+Grade Service (8082)
+
+POST /api/grades - Saisir une note
+GET /api/grades/student/{id} - Notes d'un étudiant
+GET /api/grades/student/{id}/semester/{sem}/average - Calculer moyenne
+PUT /api/grades/{id} - Modifier une note
+DELETE /api/grades/{id} - Supprimer une note
+
+Certificate Service (8083)
+
+POST /api/certificates/generate - Générer un relevé
+GET /api/certificates/{id}/download - Télécharger le PDF
+GET /api/certificates/student/{id} - Relevés d'un étudiant
+
+
+
+
+
+
 🛠️ Technologies Utilisées
 Backend
 
@@ -160,29 +191,6 @@ bashcurl -X POST http://localhost:8083/api/certificates/generate \
 6. Télécharger le PDF
 bashcurl -o releve.pdf http://localhost:8083/api/certificates/1/download
 
-📡 Documentation API
-Endpoints Principaux
-Student Service (8081)
-
-POST /api/students - Créer un étudiant
-GET /api/students - Liste des étudiants
-GET /api/students/{id} - Détails d'un étudiant
-PUT /api/students/{id} - Modifier un étudiant
-DELETE /api/students/{id} - Supprimer un étudiant
-
-Grade Service (8082)
-
-POST /api/grades - Saisir une note
-GET /api/grades/student/{id} - Notes d'un étudiant
-GET /api/grades/student/{id}/semester/{sem}/average - Calculer moyenne
-PUT /api/grades/{id} - Modifier une note
-DELETE /api/grades/{id} - Supprimer une note
-
-Certificate Service (8083)
-
-POST /api/certificates/generate - Générer un relevé
-GET /api/certificates/{id}/download - Télécharger le PDF
-GET /api/certificates/student/{id} - Relevés d'un étudiant
 
 
 🔗 Communication Inter-Services
